@@ -1,0 +1,95 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="{% static 'style-edit.css' %}">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+
+	<script src="https://kit.fontawesome.com/6b20b1c14d.js" crossorigin="anonymous"></script>
+	<title>Editar Contato</title>
+</head>
+
+<body>
+
+	<div class='container'>
+		<header class="hero">
+			<a href="{% url 'detalhes' contato.id %}">
+				<i class="fas fa-chevron-circle-left back-btn"></i>
+			</a>
+			<div class="hero-info">
+				<h1 class="name">{{ contato.nome_completo | title }}</h1>
+				<p class="relationship-hero">{{ contato.relação | title }}</p>
+			</div>
+		</header>
+
+		<form action="" method="POST">
+			{% csrf_token %}
+			<section class="contact-info">
+
+				<div class="info-line">
+					<i class="fas fa-phone icon-gradient"></i>
+					<input type="text" class="type" name="nome_completo" placeholder="Nome completo"
+						value="{{ contato | title }}">
+				</div>
+
+				<div class="info-line">
+					<i class="fas fa-user-circle icon-gradient"></i>
+					<input type="text" class="type" name="relação" placeholder="Relação"
+						value="{{ contato.relação | title }}">
+				</div>
+
+
+
+				<div class="info-line">
+					<i class="fas fa-sms icon-gradient"></i>
+					<input type="text" class="type" name="numero" placeholder="Número"
+						value="{{ contato.numero}}">
+				</div>
+
+
+
+				<div class="info-line">
+					<i class="fas fa-envelope icon-gradient"></i>
+					<input type="text" class="type" name="email" placeholder="Email" value="{{ contato.email }}">
+				</div>
+
+
+
+				<div class="info-line">
+					<i class="fas fa-map-marker-alt icon-gradient location"></i>
+					<input type="text" class="type" name="endereco" placeholder="Endereço" value="{{ contato.endereco }}">
+				</div>
+
+
+			</section>
+
+			<section class="button-container">
+				<div class="update-contact">
+					<i class="fas fa-check-circle icon-gradient"></i>
+					<button class="button">Salvar contato</button>
+				</div>
+			</section>
+		</form>
+
+		<section class="button-container">
+
+			<a href="{% url 'apagar' contato.id%}">
+				<div class="update-contact">
+					<i class="fas fa-trash icon-gradient"></i>
+					<button class="button">Apagar Contato</button>
+				</div>
+			</a>
+
+		</section>
+	</div>
+
+</body>
+
+
+</html>
