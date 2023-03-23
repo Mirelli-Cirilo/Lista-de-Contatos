@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-7z*^r&+$s6)3og7ph!1v_zl$bge_0ktqt04&t(=5*xfuron-hq
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.vercel.app', '.now.sh']
 
 
 # Application definition
@@ -78,10 +78,16 @@ WSGI_APPLICATION = 'lista_contatos.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'meubanco',
+        'USER': 'root',
+        'PASSWORD': '987654321',
+        'PORT': 3306,
+        'HOST': '127.0.0.1'
     }
 }
+    
+
 
 
 # Password validation
@@ -120,10 +126,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
-
+STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 
 
 # Default primary key field type
